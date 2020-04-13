@@ -28,8 +28,8 @@ public class AccountManager {
         return accountManager;
     }
 
-    public void initApp(int quantityThreadPool){
-        executorService = new ExecutorThreadServiceImpl(quantityThreadPool);
+    public void initApp(int quantityThreadInPool){
+        executorService = new ExecutorThreadServiceImpl(quantityThreadInPool);
         accounts = dao.loadAllAccounts();
         consoleService.printAccountsStatus(accounts);
         consoleService.printAccountBalanceSum(accounts);
@@ -51,13 +51,18 @@ public class AccountManager {
         return accounts;
     }
 
-    public Account findAccountById(String id) throws AccountFileDoesntExistException {
+    public Account findAccountByIdFromArray(String id) throws AccountFileDoesntExistException {
         Account foundAccount = accounts.stream().filter(account -> account.getId().equals(id)).findFirst().get();
         if(foundAccount == null) {
             throw new AccountFileDoesntExistException();
         }
         return foundAccount;
     }
+
+    public Account findAccountByIdFromFiles(String id) throws AccountFileDoesntExistException {
+        return dao.findAccountById(id).get();
+    }
+
 
     public void createNewRandomAccounts(int quantityAccounts){
         for(int i = 0;i < quantityAccounts; i++){
@@ -78,5 +83,10 @@ public class AccountManager {
 
     public void submitThread(Runnable thread){
         executorService.executeThread(thread);
+    }
+
+    public void refresh() {
+        dao.saveAllAccounts(accounts);
+        accounts = dao.loadAllAccounts();
     }
 }

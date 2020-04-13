@@ -4,14 +4,14 @@ import entities.BookingRequest;
 import org.apache.log4j.Logger;
 import queue.CustomQueue;
 
-public class Consumer extends Thread {
-    final static Logger logger = Logger.getLogger(Consumer.class);
+public class Handler extends Thread {
+    final static Logger logger = Logger.getLogger(Handler.class);
 
     private String id;
     private BookingRequest bookingRequest;
     private CustomQueue queue;
 
-    public Consumer(String id, CustomQueue queue) {
+    public Handler(String id, CustomQueue queue) {
         this.queue = queue;
         this.id = id;
     }

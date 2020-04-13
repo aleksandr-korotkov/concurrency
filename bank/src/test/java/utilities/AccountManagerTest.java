@@ -4,7 +4,6 @@ import dao.DAO;
 import dao.DAOImpl;
 import entities.Account;
 import exceptions.AccountFileDoesntExistException;
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -14,7 +13,8 @@ import java.io.File;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AccountManagerTest {
-    private final String DIRECTORY = "src/main/resources/accounts/";
+    private static final String EXPANSION = ".txt";
+    private static final String DIRECTORY = "src/main/resources/accounts/";
     private static final String TEST_ACCOUNT_SOURCE_ID = "a222";
     private static final String TEST_ACCOUNT_TARGET_ID = "a223";
     static AccountManager accountManager;
@@ -29,10 +29,8 @@ class AccountManagerTest {
         accountManager.initApp(2);
     }
 
-    @AfterAll
-    static void delTestData(){
-        dao.deleteAccountFile(TEST_ACCOUNT_SOURCE_ID);
-        dao.deleteAccountFile(TEST_ACCOUNT_TARGET_ID);
+    static void delTestData(String id){
+        new File(DIRECTORY + id + EXPANSION).delete();
     }
 
     @ParameterizedTest
@@ -41,7 +39,7 @@ class AccountManagerTest {
     void transferTest(Account source, Account target, Long sum, Long expected) throws AccountFileDoesntExistException, InterruptedException {
         accountManager.transfer(source, target, sum);
         Thread.sleep(300);
-        assertEquals(accountManager.findAccountById(TEST_ACCOUNT_SOURCE_ID).getBalance(),expected);
+        assertEquals(accountManager.findAccountByIdFromArray(TEST_ACCOUNT_SOURCE_ID).getBalance(),expected);
     }
 
     @ParameterizedTest
@@ -54,10 +52,10 @@ class AccountManagerTest {
         assertEquals(countFilesAfter-countFilesBefore, expected);
     }
 
-    @Ignore
     @Test
     void deleteAllAccountFilesTest(){
         accountManager.deleteAllAccountFiles();
         assertTrue(new File(DIRECTORY).listFiles().length==0);
     }
+
 }

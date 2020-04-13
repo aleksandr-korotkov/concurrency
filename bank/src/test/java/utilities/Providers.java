@@ -1,9 +1,6 @@
 package utilities;
 
-import dao.DAO;
-import dao.DAOImpl;
 import exceptions.AccountFileDoesntExistException;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.provider.Arguments;
 
 import java.util.stream.Stream;
@@ -20,10 +17,10 @@ public class Providers {
 
     public static Stream<Arguments> testTransfer() throws AccountFileDoesntExistException {
         return Stream.of(
-                arguments(accountManager.findAccountById(TEST_ACCOUNT_SOURCE_ID),
-                        accountManager.findAccountById(TEST_ACCOUNT_TARGET_ID), 50l, 50l),
-                arguments(accountManager.findAccountById(TEST_ACCOUNT_SOURCE_ID),
-                        accountManager.findAccountById(TEST_ACCOUNT_TARGET_ID), 10l, 40l)
+                arguments(accountManager.findAccountByIdFromArray(TEST_ACCOUNT_SOURCE_ID),
+                        accountManager.findAccountByIdFromArray(TEST_ACCOUNT_TARGET_ID), 50l, 50l),
+                arguments(accountManager.findAccountByIdFromArray(TEST_ACCOUNT_SOURCE_ID),
+                        accountManager.findAccountByIdFromArray(TEST_ACCOUNT_TARGET_ID), 10l, 40l)
 
         );
     }
@@ -34,4 +31,5 @@ public class Providers {
                 arguments(2,2)
         );
     }
+
 }

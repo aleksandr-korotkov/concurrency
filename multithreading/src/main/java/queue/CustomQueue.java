@@ -7,14 +7,10 @@ import java.util.List;
 
 public class CustomQueue {
         private List<BookingRequest> queue = new LinkedList();
-        private int limit;
+        private final int LIMIT = 5;
 
-    public CustomQueue(int limit) {
-        this.limit = limit;
-    }
-
-    public synchronized boolean put(BookingRequest request) throws InterruptedException  {
-            while (queue.size() == this.limit) {
+        public synchronized boolean put(BookingRequest request) throws InterruptedException  {
+            while (queue.size() == this.LIMIT) {
                 wait();
             }
             if (queue.size() == 0) {
@@ -31,7 +27,7 @@ public class CustomQueue {
             while (queue.size() == 0){
                 wait();
             }
-            if (queue.size() == this.limit){
+            if (queue.size() == this.LIMIT){
                 notifyAll();
             }
 
