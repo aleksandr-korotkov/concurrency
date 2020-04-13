@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="advanced" />
+        <module name="regexp" />
+        <module name="multithreading" />
+        <module name="bank" />
+        <module name="reflection_annotation" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="advanced" target="1.5" />
+      <module name="bank" target="8" />
+      <module name="multithreading" target="8" />
+      <module name="reflection_annotation" target="1.5" />
+      <module name="regexp" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/advanced.iml" filepath="$PROJECT_DIR$/advanced.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bank/bank.iml" filepath="$PROJECT_DIR$/bank/bank.iml" />
+      <module fileurl="file://$PROJECT_DIR$/multithreading/multithreading.iml" filepath="$PROJECT_DIR$/multithreading/multithreading.iml" />
+      <module fileurl="file://$PROJECT_DIR$/reflection_annotation/reflection_annotation.iml" filepath="$PROJECT_DIR$/reflection_annotation/reflection_annotation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/regexp/regexp.iml" filepath="$PROJECT_DIR$/regexp/regexp.iml" />
+    </modules>
+  </component>
+</project>
